@@ -16,13 +16,13 @@
 
 package ca.grimlineage.galvanyze.lwjgl3;
 
-import org.lwjgl.system.macosx.LibC;
-
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.InputStreamReader;
 import java.lang.management.ManagementFactory;
 import java.util.ArrayList;
+
+import org.lwjgl.system.macosx.LibC;
 
 /**
  * Adds some utilities to ensure that the JVM was started with the

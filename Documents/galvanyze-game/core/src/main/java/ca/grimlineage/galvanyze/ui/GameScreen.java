@@ -1,4 +1,4 @@
-package ca.grimlineage.galvanyze.screens;
+package ca.grimlineage.galvanyze.ui;
 
 public class GameScreen {
      
