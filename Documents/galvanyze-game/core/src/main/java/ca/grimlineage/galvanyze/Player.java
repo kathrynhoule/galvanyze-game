@@ -12,6 +12,7 @@ public class Player {
     private Animation<TextureRegion> walkFront, walkRight, walkLeft, walkBack;
     private float animationTime;
     private float x, y;
+    // may make the speed final in the future. not sure if there will be running yet or not
     private float speed = 80;
     private TextureRegion currentFrame;
 
@@ -45,27 +46,30 @@ public class Player {
      animationTime += deltaTime;
      boolean isWalking = false;
 
-     // movement and animation
-     if (Gdx.input.isKeyPressed(Input.Keys.W)) {
-         y += speed * deltaTime;
-         currentFrame = walkBack.getKeyFrame(animationTime, true);
-         isWalking = true;
-     }
-     if (Gdx.input.isKeyPressed(Input.Keys.S)) {
-         y -= speed * deltaTime;
-         currentFrame = walkFront.getKeyFrame(animationTime, true);
-         isWalking = true;
-     }
-     if (Gdx.input.isKeyPressed(Input.Keys.A)) {
-         x -= speed * deltaTime;
-         currentFrame = walkLeft.getKeyFrame(animationTime, true);
-         isWalking = true;
-     }
-     if (Gdx.input.isKeyPressed(Input.Keys.D)) {
-         x += speed * deltaTime;
-         currentFrame = walkRight.getKeyFrame(animationTime, true);
-         isWalking = true;
-     }
+     // prevent diagonal movement
+    boolean up = Gdx.input.isKeyPressed(Input.Keys.W);
+    boolean down = Gdx.input.isKeyPressed(Input.Keys.S);
+    boolean left = Gdx.input.isKeyPressed(Input.Keys.A);
+    boolean right = Gdx.input.isKeyPressed(Input.Keys.D);
+
+    // vertical movement prioritized over horizontal
+    if (up && !down) {
+        y += speed * deltaTime;
+        currentFrame = walkBack.getKeyFrame(animationTime, true);
+        isWalking = true;
+    } else if (down && !up) {
+        y -= speed * deltaTime;
+        currentFrame = walkFront.getKeyFrame(animationTime, true);
+        isWalking = true;
+    } else if (left && !right) {
+        x -= speed * deltaTime;
+        currentFrame = walkLeft.getKeyFrame(animationTime, true);
+        isWalking = true;
+    } else if (right && !left) {
+        x += speed * deltaTime;
+        currentFrame = walkRight.getKeyFrame(animationTime, true);
+        isWalking = true;
+    }
 
      // reset to idle if not walking
      if (!isWalking) {
