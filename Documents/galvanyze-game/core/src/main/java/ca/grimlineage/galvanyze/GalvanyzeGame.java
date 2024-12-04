@@ -12,7 +12,7 @@ public class GalvanyzeGame extends ApplicationAdapter {
     @Override
     public void create() {
         batch = new SpriteBatch();
-        player = new Player("ghost_walk_front.png", Gdx.graphics.getWidth() / 2f, Gdx.graphics.getHeight() / 2f);
+        player = new Player("ghost_all_sprites.png", Gdx.graphics.getWidth() / 2f, Gdx.graphics.getHeight() / 2f);
     }
 
     @Override
