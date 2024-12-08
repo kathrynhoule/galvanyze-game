@@ -93,4 +93,12 @@ public class Player {
  public void dispose() {
      playerSheet.dispose();
  }
+
+ public float getX() {
+    return x;
+}
+
+public float getY() {
+    return y;
+}
 }
